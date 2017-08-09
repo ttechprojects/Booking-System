@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8' />
+<link href='../fullcalendar.min.css' rel='stylesheet' />
+<link href='../fullcalendar.print.min.css' rel='stylesheet' media='print' />
+<script src='../lib/moment.min.js'></script>
+<script src='../lib/jquery.min.js'></script>
+<script src='../fullcalendar.min.js'></script>
+<script>
+
+	$(document).ready(function() {
+	
+		$('#calendar').fullCalendar({
+			header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,agendaWeek,agendaDay,listWeek'
+			},
+			defaultDate: '2017-05-12',
+			editable: true,
+			navLinks: true, // can click day/week names to navigate views
+			eventLimit: true, // allow "more" link when too many events
+			events: {
+				url: 'php/get-events.php',
+				error: function() {
+					$('#script-warning').show();
+				}
+			},
+			
+			
+			
+			loading: function(bool) {
+				$('#loading').toggle(bool);
+			}
+		});
+		
+	});
+	
+</script>
+<link href="../../bootstrap-3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../bootstrap-3.3.7/docs/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+	<link href="../../bootstrap-3.3.7/docs/examples/dashboard/css/form.css " rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="../../bootstrap-3.3.7/docs/examples/dashboard/dashboard.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../../bootstrap-3.3.7/docs/assets/js/ie-emulation-modes-warning.js"></script>
+	
+<style>
+	
+
+	body {
+	
+		margin-top: 0;
+		padding-left: 0;
+		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+		font-size: 14px;
+	}
+	
+	
+	#script-warning {
+		display: none;
+		background: #eee;
+		border-bottom: 1px solid #ddd;
+		padding: 0 10px;
+		line-height: 40px;
+		text-align: center;
+		font-weight: bold;
+		font-size: 12px;
+		color: red;
+	}
+
+	#loading {
+		display: none;
+		position: absolute;
+		top: 10px;
+		right: 10px;
+	}
+
+	#calendar {
+		float:right;
+		max-width: 900px;
+		margin: 0px 50px 10px 0px;
+		padding: 0 10px;
+	}
+.button1 {
+   background-color:rgba(200,0,0,0.8);
+    border: none;
+	border-radius:7px;
+    color: #f6f6f6;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px 15px 2px;
+    cursor: pointer;
+	margin-left:80px;
+	
+}
+.button2 {
+    background-color:rgba(200,0,0,0.8);
+    border: none;
+	border-radius:7px;
+    color: #f6f6f6;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+	
+		
+}
+
+</style>
+</head>
+<body>
+
+</style>
+</head>
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top" style="position:fixed;">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Emirates Booking System</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Logout</a></li>
+			</ul>
+			</div>
+			</nav>
+	 <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-4 sidebar " style="background-color:lightgray;">
+          <ul class="nav nav-sidebar">
+		<div style="background-color: #f6f6f6;border-left:none;border-top:none;border-right:inset;border-bottom:inset;border-color:rgba(200,0,0,0.8); 
+		border-top-right-radius:15px;border-bottom-right-radius:15px; box-shadow:2px 2px 0px 0px lightgray inset;  padding-top:50px;margin-top:50px;"> 
+		<div style="min-height:300px; width:300px; margin-left:50px; position=fixed;" ><p>
+		<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "booking17";
+
+// Create connection
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed:" . $conn->connect_error);
+} 
+else 
+{
+$sql = "SELECT * FROM booking;";
+$result = $conn->query($sql);
+{
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc())
+	{
+        Meeting ID <?php echo $row["m_name"]?>
+        Booked By <?php echo $row["b_name"]?>
+		Staff Number <?php echo $row["s_id"]?>
+        Date <?php echo $row["date"]?>
+        Start Time <?php echo $row["start"]?>
+        End Time <?php echo $row["end"]?>	
+        No.Of Attendees <?php echo $row["attendees"]?>
+        Room Number <?php echo $row["r_no"]?>  
+    }
+} else {
+    echo "0 results";
+}
+}
+$conn->close();
+?> </p></div > 
+
+<p>
+<form action="delete.php">
+<a href="http://localhost/view.html#" class="button1">Edit Meeting</a>
+<a href="http://localhost/fullcalendar-3.4.0/demos/json.html" onclick="return confirm('Are you sure?')" class="button2">Delete Meeting</a>
+</p>
+</div>
+
+
+
+         </ul>
+		  </body>
+		  </html>
+		  
