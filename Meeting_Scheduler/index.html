@@ -10,8 +10,6 @@
 <script>
 
 	$(document).ready(function() {
-	 
-    
 
 		$('#calendar').fullCalendar({
 			header: {
@@ -29,6 +27,9 @@
 					$('#script-warning').show();
 				}
 			},
+            loading: function(bool) {
+				$('#loading').toggle(bool);
+			},
 			
 			eventClick: function(event) {
         if (event.title) {
@@ -37,12 +38,11 @@
             $('#add-meeting').toggle();
             return false;
         }
-    },
-			
-			loading: function(bool) {
-				$('#loading').toggle(bool);
-			}
-		});
+    	
+		
+		},
+                eventColor:'rgba(200,0,0)'
+        });
 		
 	});
 
@@ -60,6 +60,16 @@
     <script src="js/ie-emulation-modes-warning.js"></script>
 	<script type="text/javascript">
 	 $(document).ready(function(){
+         $(".button3").click(function(){
+             $('#view-meeting').toggle();
+            $('#view-details').load('php/view-details.php');
+            $('#edit-delete').toggle();
+         });
+         $(".button1").click(function(){
+            $("#edit-delete").toggle();
+            $("#view-meeting").toggle();
+        });
+            
         $("#meeting").click(function(){
             $("#meeting-form").slideToggle();
 			$('#cm-form').slideUp();
@@ -123,6 +133,36 @@
 		margin: 0px 50px 10px 0px;
 		padding: 0 10px;
 	}
+    .button1 {
+   background-color:rgba(200,0,0,0.8);
+    border: none;
+	border-radius:7px;
+    color: #f6f6f6;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px 15px 2px;
+    cursor: pointer;
+	margin-left:80px;
+	
+}
+.button2 {
+    background-color:rgba(200,0,0,0.8);
+    border: none;
+	border-radius:7px;
+    color: #f6f6f6;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+	
+		
+}
 
 </style>
 </head>
@@ -157,20 +197,20 @@
            <li  id="meeting" class="active"><a href="#">Add a Meeting <!--<span class="sr-only">(current)</span>--></a></li>
 				<li><div id="meeting-form" style="display:none; position:relative;">
 			<form class="m-form" action="FS1" method="get">
-				<div class="text-form">Meeting Name<input class="text-field" type="text" name="m_name"><br></div>
-				<div class="text-form">Booked By<input class="text-field" type="text" name="b_by"><br></div>
-				<div class="text-form">Staff Number<input class="text-field" type="text" name="s_id"><br></div>
-				<div class="text-form date-form">Date<input class="text-field" type="date" name="date"><br></div>
-				<div class="text-form">Start Time<input class="text-field" type="time" name="start"><br></div>
-				<div class="text-form">End Time<input class="text-field" type="time" name="end"><br></div>
+				<div class="text-form">Meeting Name<input class="text-field" type="text" name="m_name" required><br></div>
+				<div class="text-form">Booked By<input class="text-field" type="text" name="b_by" required><br></div>
+				<div class="text-form">Staff Number<input class="text-field" type="text" name="s_id" required><br></div>
+				<div class="text-form date-form">Date<input class="text-field" type="date" name="date" required><br></div>
+				<div class="text-form">Start Time<input class="text-field" type="time" name="start" required><br></div>
+				<div class="text-form">End Time<input class="text-field" type="time" name="end" required><br></div>
 				<div class="text-form">No.of Attendees<input class="text-field" type="text" name="guests"><br></div>
-				<div class="text-form">Room Number<input class="text-field" type="text" name="r_no"><br></div>
+				<div class="text-form">Room Number<input class="text-field" type="text" name="r_no" ><br></div>
 				<!--Recurrence Time&nbsp;
 				Daily<input type="radio" name="rec_time" value="Daily" checked>
 				Weekly<input type="radio" name="rec_time" value="weekly">
 				Monthly<input type="radio" name="rec_time" value="monthly"> 
 				Other<input type="radio" name="rec_time" value="other"><br>-->
-				<div class="text-form">Contact Number<input class="text-field" type="text" name="id"></div>
+				<div class="text-form">Contact Number<input class="text-field" type="text" name="id" required></div>
 				<br>
 				<div class="form-sub"><button class="form-submit" type="submit">Submit</div>
 			</form>	
@@ -180,9 +220,9 @@
 			</li>
             <li class="active" id="cm"><a href="#">Content Management</a></li>
 			<li>
-				<div id="cm-form" style="display:none; position:relative;">
+				<div id="cm-form" style="display:none; position:relative; height: 400px;">
 					<form class="cm-form" action="FS1" method="get">
-						<div class="text-form">Upload Image/Video<input class="file-path text-field" type="file" name="file_path" accept="media_type"><br></div>
+						<div class="text-form">Upload Image/Video<input class="file-path text-field" type="file" name="file_path" accept="media_type" required><br></div>
 						<div class="text-form">Screen Number<br>
 							<div class="c-box"><input class="check-box" type="checkbox" name="Ad-Board-1" value="1">Screen - 1  &nbsp; &nbsp;&nbsp; &nbsp;
 							<input class="check-box" type="checkbox" name="Ad-Board-2" value="2">Screen - 2</div>
@@ -196,9 +236,9 @@
 							<input class="check-box" type="checkbox" name="Ad-Board-8" value="8">Screen - 8</div>
 							<div class="s-all"><input class="select-all" type="checkbox" name="Ad-all" >Select All</div>
 						</div>
-						<div class="text-form date-form">Date<input class="text-field" type="date" name="ad_date"><br></div>
-						<div class="text-form">Start Time<input class="text-field" type="time" name="start_time_ad"><br></div>
-						<div class="text-form">Duration<select name="duration" class="text-field"><br>
+						<div class="text-form date-form">Date<input class="text-field" type="date" name="ad_date" required><br></div>
+						<div class="text-form">Start Time<input class="text-field" type="time" name="start_time_ad" required><br></div>
+						<div class="text-form">Duration<select required name="duration" class="text-field"><br>
 							
 								
 										<option value="5">5 mins</option>
@@ -220,8 +260,22 @@
 			<li class="active" id="ticker"><a href="#">Message Alerts</a></li>
 			<div id="ticker-form" style="display:none; position:relative;">
 			<form class="ticker-form" action="FS1" method="get">
-				<div class="text-form"><b>Message</b><textarea input class="text-area" rows="3" cols="30" name="ticker"></textarea><br><br><br><br></div>
+				<div class="text-form"><b>Message</b><textarea input class="text-area" rows="3" cols="30" name="ticker" required></textarea><br><br><br><br>
+                <div class="text-form" style="margin-left: -10px;"><b>Duration</b><select required name="duration" class="text-field"><br>
+							
+								
+										<option value="5">5 mins</option>
+										<option value="10">10 mins</option>
+										<option value="30">30 mins</option>
+										<option value="60">1 hr</option>
+										<option value="120">2 hr</option>
+										<option value="300">5 hr</option>
+										<option value="1440">Entire Day</option>
+										
+								</select></div>
+								<br>
 				<div class="form-sub"><button class="form-submit" type="submit">Submit</div>
+                    </div>
 			</form>
 			</div>
             <!--<li><a href="#">Analytics</a></li>
@@ -238,9 +292,13 @@
       </div>
     </div>
          <div class="container-fluid" id="view-meeting" style="display: none;">
+             
+
+             
       <div class="row">
         <div class="col-sm-3 col-md-4 sidebar " style="background-color:lightgray;">
           <ul class="nav nav-sidebar">
+                              <li class="active" style="margin-top:-21px; margin-bottom: -50px;"><a href="index.html" class="button4" >Back</a></li>
 		<div style="background-color: #f6f6f6;border-left:none;border-top:none;border-right:inset;border-bottom:inset;border-color:rgba(200,0,0,0.8); 
 		border-top-right-radius:15px;border-bottom-right-radius:15px; box-shadow:2px 2px 0px 0px lightgray inset;  padding-top:50px;margin-top:50px;"> 
 		<div style="min-height:300px; width:300px; margin-left:50px; position=fixed;" ><p id="view-details">
@@ -248,8 +306,8 @@
 
 <p>
 <form action="delete.php">
-<a href="http://localhost/view.html#" class="button1">Edit Meeting</a>
-<a href="http://localhost/index.html" onclick="return confirm('Are you sure?')" class="button2">Delete Meeting</a>
+<a href="#" class="button1" style="">Edit Meeting</a>
+<a href="index.html" onclick="return confirm('Are you sure?')" class="button2">Delete Meeting</a>
 </p>
 </div>
 
@@ -259,6 +317,36 @@
           </div>
          </div>
         </div>
+        <div class="container-fluid" id="edit-delete" style="display: none;">
+      <div class="row">
+        <div class="col-sm-3 col-md-4 sidebar">
+          <ul class="nav nav-sidebar">
+	
+           <li  id="edit" class="active">	  <a href="#" class="button3">Back</a><a href="#">Edit Meeting 
+               <!--<span class="sr-only">(current)</span>--></a>
+				<div id="edit-form" style="position:relative;">
+			<form class="e-form" action="FS1" method="get">
+				<div class="text-form">Meeting Name<input class="text-field" type="text" name="m_name" required><br></div>
+				<div class="text-form">Booked By<input class="text-field" type="text" name="b_by" required><br></div>
+				<div class="text-form">Staff Number<input class="text-field" type="text" name="s_id" required><br></div>
+				<div class="text-form date-form">Date<input class="text-field" type="date" name="date" required><br></div>
+				<div class="text-form">Start Time<input class="text-field" type="time" name="start" required><br></div>
+				<div class="text-form">End Time<input class="text-field" type="time" name="end" required><br></div>
+				<div class="text-form">No.of Attendees<input class="text-field" type="text" name="guests"><br></div>
+				<div class="text-form">Room Number<input class="text-field" type="text" name="r_no"><br></div>
+				<div class="text-form">Contact Number<input class="text-field" type="text" name="id" required></div>
+				<br>
+				<div class="form-sub"><button class="form-submit" type="submit">Submit</div>
+			</form>	
+				</div>
+			</li>
+            </form>
+			</div>
+			</ul>
+          
+        </div>
+    </div>
+    </div>
 	<div id='script-warning'>
 		<code>php/get-events.php</code> must be running.
 	</div>
