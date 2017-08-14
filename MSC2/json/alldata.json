@@ -1,0 +1,37 @@
+[{
+    "e_name": "Chirag",
+    "s_id": "1234",
+    "m_name": "GW",
+    "guests": "12",
+    "meeting_start": "2017-08-09 13:30:00",
+    "meeting_end": "2017-08-09 14:30:00",
+    "contact": "1234566",
+    "email": "chrg@lol.com",
+    "r_id": "1",
+    "r_name": "Room-1",
+    "avail": "0"
+}, {
+    "e_name": "Anki",
+    "s_id": "1236",
+    "m_name": "DW2",
+    "guests": "14",
+    "meeting_start": "2017-08-11 08:30:00",
+    "meeting_end": "2017-08-11 09:30:00",
+    "contact": "5635632",
+    "email": "anki@lol.com",
+    "r_id": "3",
+    "r_name": "Room-3",
+    "avail": "0"
+}, {
+    "e_name": "Varun",
+    "s_id": "1235",
+    "m_name": "GW2",
+    "guests": "13",
+    "meeting_start": "2017-08-10 15:30:00",
+    "meeting_end": "2017-08-10 16:30:00",
+    "contact": "1234567",
+    "email": "varun@lol.com",
+    "r_id": "12",
+    "r_name": "Room-12",
+    "avail": "0"
+}]
