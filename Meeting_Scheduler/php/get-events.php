@@ -9,6 +9,8 @@
 // Requires PHP 5.2.0 or higher.
 //--------------------------------------------------------------------------------------------------
 
+$connect=mysqli_connect("localhost","root","","ekbooking");
+
 // Require our Event class and datetime utilities
 require 'utils.php';
 
@@ -30,6 +32,24 @@ if (isset($_GET['timezone'])) {
 }
 
 // Read and parse our events JSON file into an array of event data arrays.
+$sql = "SELECT * FROM booking;";
+
+ 
+if($result = mysqli_query($connect, $sql))
+{
+	while($row = mysqli_fetch_assoc($result))
+	{
+		$title = $row['m_name'];
+        $start = $row['s_time'];
+        $end = $row['e_time'];
+        
+        $modified_array[]=array('title'=>$title,'start'=>$start,'end'=>$end);
+	}
+    
+    $result_array=$modified_array;
+    $fp = fopen('../json/events.json', 'w');
+    fwrite($fp, json_encode($result_array));
+    fclose($fp);
 $json = file_get_contents('../json/events.json');
 $input_arrays = json_decode($json, true);
 
@@ -46,5 +66,7 @@ foreach ($input_arrays as $array) {
 	}
 }
 
+}
 // Send JSON to the client.
 echo json_encode($output_arrays);
+?>
