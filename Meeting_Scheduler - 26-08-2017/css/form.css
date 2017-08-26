@@ -1,0 +1,84 @@
+
+.m-form{
+	background-color:#efefef;
+	padding-left:10px;
+	margin-top:10px;
+	height:385px;
+	width:90%;
+}
+.time-field{
+	width:165px;
+	float:right;
+}
+.text-form{
+	font-family:Helvetica,serif;
+	padding:5px;
+	padding-left:15px;
+	padding-top:7.5px;
+	width:95%;
+}
+.text-field{
+	width:165px;
+	float:right;
+	padding-right:5px;
+	border-radius:6px;
+	border-top:none;
+	border-left:none;
+	border-bottom:inset;
+	border-right:inset;
+	border-color:rgb(200,0,0);
+	background-color:#f6f6f6;
+}
+.form-sub{
+	float:right;
+	padding-right:30px;
+		border-right-color:rgb(200,0,0);
+	margin:5px;
+	display:absolute;
+}
+.file-path{
+	float:right;
+	width:200px;
+	position:relative;
+	transition:0.5s ease;
+}
+.text-area{
+	width:300px;
+	float:right;
+	padding-right:5px;
+	border-radius:6px;
+	border-top:none;
+	border-left:none;
+	border-bottom:inset;
+	border-right:inset;
+	border-color:rgb(200,0,0);
+	background-color:#f6f6f6;
+}
+.check-box{
+	
+	padding:10px;
+}
+
+.c-box{
+	
+
+	padding-left:100px;
+	padding-top:8px;
+}
+.s-all{
+	padding-left:210px;
+	padding-top:8px;
+	padding-bottom:8px;
+}
+.form-submit{
+	border-right-color:red;
+	border-bottom-color:red;
+	border-radius:4px;
+	width:90px;
+	height:25px;
+	font-family:Garamond,sans-serif;
+	font-weight:bold;
+	font-size:1.1em;
+
+
+}
