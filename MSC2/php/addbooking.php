@@ -50,9 +50,11 @@
             {
                 $from_compare = $row['meeting_start'];//meeting start time from the already booked meetings
                 $to_compare = $row['meeting_end'];//meeting end time from already booked meetings
+                
+                $another_meeting=($to<=$from_compare || $from>=$to_compare);
                     
-                $another_meeting = (strcmp($from,$from_compare) && strcmp($from,$to_compare)) || 
-                            (strcmp($from_compare,$from) && strcmp($from_compare,$to));//logic is wrong, re-verify
+                //$another_meeting = (strcmp($from,$from_compare) && strcmp($from,$to_compare)) || 
+                            //(strcmp($from_compare,$from) && strcmp($from_compare,$to));//logic is wrong, re-verify
                 
                 if($another_meeting==true)//if times are clashing, display
                 {
