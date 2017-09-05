@@ -1,0 +1,6 @@
+{
+  "require": {
+    "microsoft/windowsazure": "^0.4",
+    "phpmailer/phpmailer": "^6.0"
+  }
+}
